@@ -32,7 +32,8 @@ void jeu(char mot[]) {
     printf("Veuillez entrer une lettre: ");
     scanf(" %c", &lettreUtilisateur);
 
-    if(!verificationValiditeLettre(lettres, lettreUtilisateur) || !verificationPresenceLettre(mot, lettreUtilisateur)) {
+    if(!verificationValiditeLettre(lettres, lettreUtilisateur) ||
+       !verificationPresenceLettre(mot, lettreUtilisateur)) {
       nombreErreur++;
     }
 
