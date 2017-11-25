@@ -38,7 +38,7 @@ void initialiseAgence(Agence* a);
 // Affichage des structures
 void affichageClient(Client cl);
 void affichageMaison(Maison m);
-// Achat d'une Maison
+// Achat d'une maison
 void acheterMaison(Maison* m, Client* cl);
 // Maisons non-vendus d'une agence
 void maisonsNonVendus(Agence a);
