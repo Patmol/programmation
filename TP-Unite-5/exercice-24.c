@@ -43,32 +43,41 @@ void acheterMaison(Maison* m, Client* cl);
 // Maisons non-vendus d'une agence
 void maisonsNonVendus(Agence a);
 // Ajout d'un client à une agence
-void ajoutClient(Agence* a, Client cl);
+void ajoutClient(Agence* a, Client* cl);
 // Ajout d'une maison à une agence
-void ajoutMaison(Agence* a, Maison m);
+void ajoutMaison(Agence* a, Maison* m);
+// Client avec le plus de maison
+int clientMaxMaisons(Agence a);
 
 int main(void) {
+  int clientMaxMaison;
   Client clients[20];
   Maison maisons[20];
   Agence agence;
 
   // Initialisation des clients et maisons
-  initialiseClient(1, 300000, &clients[0]);
-  initialiseClient(2, 100000, &clients[1]);
-  initialiseClient(3, 1000000, &clients[2]);
-  initialiseMaison(1, 3, 250000, &maisons[0]);
-  initialiseMaison(2, 5, 800000, &maisons[1]);
-  initialiseMaison(3, 1, 600000, &maisons[2]);
+  initialiseClient(12, 300000, &clients[0]);
+  initialiseClient(24, 2000000, &clients[1]);
+  initialiseClient(33, 1000000, &clients[2]);
+  initialiseMaison(11, 3, 250000, &maisons[0]);
+  initialiseMaison(20, 5, 800000, &maisons[1]);
+  initialiseMaison(345, 1, 600000, &maisons[2]);
   initialiseAgence(&agence);
-  ajoutClient(&agence, clients[0]);
-  ajoutClient(&agence, clients[1]);
-  ajoutMaison(&agence, maisons[0]);
-  ajoutMaison(&agence, maisons[1]);
+  ajoutClient(&agence, &clients[0]);
+  ajoutClient(&agence, &clients[1]);
+  ajoutClient(&agence, &clients[2]);
+  ajoutMaison(&agence, &maisons[0]);
+  ajoutMaison(&agence, &maisons[1]);
 
   acheterMaison(&maisons[1], &clients[0]);
   acheterMaison(&maisons[1], &clients[2]);
+  acheterMaison(&maisons[0], &clients[1]);
+  acheterMaison(&maisons[2], &clients[1]);
 
   maisonsNonVendus(agence);
+
+  clientMaxMaison = clientMaxMaisons(agence);
+  printf("Le client avec le maximum de maison est le client %d\n", clientMaxMaison);
 
   return 0;
 }
@@ -134,17 +143,30 @@ void maisonsNonVendus(Agence a) {
 }
 
 // Ajout d'un client à une agence
-void ajoutClient(Agence* a, Client cl) {
+void ajoutClient(Agence* a, Client* cl) {
   if (a->nbClients < MAX_CLIENTS_AGENCE) {
-    a->clients[a->nbClients] = &cl;
+    a->clients[a->nbClients] = cl;
     a->nbClients++;
   }
 }
 
 // Ajout d'une maison à une agence
-void ajoutMaison(Agence* a, Maison m) {
+void ajoutMaison(Agence* a, Maison* m) {
   if (a->nbMaisons < MAX_MAISONS_AGENCE) {
-    a->maisons[a->nbMaisons] = &m
+    a->maisons[a->nbMaisons] = m;
     a->nbMaisons++;
   }
+}
+
+// Client avec le maximum de maison
+int clientMaxMaisons(Agence a) {
+  int idClient = 0;
+
+  for (int i = 1; i < a.nbClients; i++) {
+    if(a.clients[i]->nbMaisons > a.clients[idClient]->nbMaisons) {
+      idClient = i;
+    }
+  }
+
+  return a.clients[idClient]->id;
 }
