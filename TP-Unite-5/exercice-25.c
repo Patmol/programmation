@@ -14,9 +14,9 @@ bool numeroIdentiqueNomsDifferent(Personne personnes[], int taille);
 
 int main(void) {
   Personne personnes[20];
-  initialisePersonne("Evrard", 63218967, &personnes[0]);
-  initialisePersonne("Demars", 473353817, &personnes[1]);
-  initialisePersonne("Bernardy", 63218967, &personnes[2]);
+  initialisePersonne("User1", 64587658, &personnes[0]);
+  initialisePersonne("User2", 498673514, &personnes[1]);
+  initialisePersonne("User3", 64587658, &personnes[2]);
 
   if (numeroIdentiqueNomsDifferent(personnes, 3)) {
     printf("Des personnes possèdes le même numéro avec des noms différents\n");
