@@ -53,7 +53,7 @@ void lire_suite(int a[NBCOTES]) {
   // Et si celle-ci est une valeur possible (entre nos bornes du tableau
   //    comprise entre 0 et 20 - taille du tableau - 1)
   // Si la valeur est incorrecte, on n'arrête la lecture
-  while (x != 1 && (x >= 0 && x <= 20)) {
+  while (x != -1 && (x >= 0 && x <= 20)) {
     // Incrémentation de 1 de la valeur à l'index de notre cotes
     a[x]++; // Version simplifié de a[x] = a[x] + 1;
     // Lecture de la cote suivante
